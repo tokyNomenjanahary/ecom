@@ -1,0 +1,9 @@
+.custom-card{
+  max-width: 300px;
+  min-width: 150px;
+}
+
+.custom-card-img {
+  height: 250px;
+  object-fit: cover;
+}
