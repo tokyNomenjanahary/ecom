@@ -1,9 +1,8 @@
 <template>
-  <a href="#" class="btn btn-primary col mx-2" @click.prevent="addToCart"
+  <a href="#" class="badge bg-primary col mx-2" @click.prevent="addToCart"
     >ajouter au pannier
   </a>
 </template>
-
 <script setup>
 import { inject } from "vue";
 import axios from "axios";

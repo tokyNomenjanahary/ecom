@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
@@ -16,6 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Category::factory()->count(30)->create();
         User::factory()
             ->count(10)
             ->has(

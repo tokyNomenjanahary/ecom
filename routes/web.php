@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ShoppingCartController;
 
 /*
@@ -17,19 +18,22 @@ use App\Http\Controllers\ShoppingCartController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/layout', function () {
     return view('template');
 });
 
-Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/', [ProductController::class, 'index'])->name('home.index');
 Route::get('/shopping-cart', ShoppingCartController::class)->name('cart.index');
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::view('{any}', 'home')
-    ->middleware('auth')
+Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
+    Route::get('/create_products', [AdminController::class, 'create'])->name('products.create');
+});
+
+Route::view('{any}', 'admin.dashboard')
+    ->middleware(['auth', 'isAdmin'])
     ->where('any', '.*');

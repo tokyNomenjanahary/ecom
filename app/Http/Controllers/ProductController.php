@@ -9,7 +9,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::inRandomOrder()
+        $products = Product::with('category')
+                            ->inRandomOrder()
                             ->whereIsActive(true)
                             ->take(16)
                             ->get();

@@ -21,6 +21,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'role_id',
         'password',
     ];
 
@@ -46,5 +47,10 @@ class User extends Authenticatable
     public function orders() :HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

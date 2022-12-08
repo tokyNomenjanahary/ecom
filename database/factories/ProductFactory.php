@@ -18,6 +18,7 @@ class ProductFactory extends Factory
             'description' => $this->faker->sentence(),
             'image_url' => $this->faker->imageUrl(),
             'price' => rand(10000, 15000),
+            'category_id' => rand(1, 9),
             'is_active' => $this->faker->boolean(80)
         ];
     }
