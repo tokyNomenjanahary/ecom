@@ -31,7 +31,7 @@
     </tbody>
   </table>
   <div class="row align-items-center justify-content-end mt-5">
-    <a class="btn btn-secondary col-2 rounded-0 bg-dark">
+    <a href="/checkout" class="btn btn-secondary col-2 rounded-0 bg-dark">
       PASSER A LA CAISSE
     </a>
     <div class="col-3">

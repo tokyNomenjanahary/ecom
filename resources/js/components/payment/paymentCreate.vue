@@ -1,27 +1,70 @@
 <template>
-      <!-- Display a payment form -->
-    <form id="payment-form">
-      <div id="payment-element">
-        <!--Stripe.js injects the Payment Element-->
+    <div class="row">
+      <div class="col">
+        <!-- Display a payment form -->
+        <form id="payment-form">
+          <div id="payment-element">
+            <!--Stripe.js injects the Payment Element-->
+          </div>
+          <button
+            @click.prevent="handleSubmit"
+            id="submit">
+            <div class="spinner hidden" id="spinner"></div>
+            <span id="button-text">Passer la commande</span>
+          </button>
+          <div id="payment-message" class="hidden"></div>
+        </form>
       </div>
-      <button
-        @click.prevent="handleSubmit"
-        id="submit">
-        <div class="spinner hidden" id="spinner"></div>
-        <span id="button-text">Pay now</span>
-      </button>
-      <div id="payment-message" class="hidden"></div>
-    </form>
+      <div class="col-5">
+        <div class="card pb-0">
+          <div class="card-header">
+            <h5 class="card-title">Récapitulatif du panier</h5>
+          </div>
+          <div class="card-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0"
+                v-for="product in products" :key="product.id"
+                >
+                <div class="me-auto">
+                  <div class="fw-bold" v-text="product.name"></div>
+                  {{ formatPrice(product.price) }}
+                </div>
+                <span class="badge bg-primary rounded-pill" v-text="product.quantity"></span>
+              </li>
+            </ul>
+          </div>
+          <div class="card-footer row justify-content-between pt-0">
+            <div class="w-auto">
+              Total :
+            </div> 
+            <div class="w-auto">
+              {{ totalPrice }}
+            </div>   
+          </div>
+        </div>
+      </div>
+    </div>
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, computed } from "vue";
 import useStripe from "../../services/stripe/index.js";
+import useProduct from "../../services/products/index.js";
+import { formatPrice } from "../../helpers/helpers.js";
 
 const { initialize, checkStatus, handleSubmit } = useStripe()
+const { getProducts, products } = useProduct()
+
+const totalPrice = computed(() => {
+  let price = Object.values(products.value)
+  .reduce((prev, product) => prev += product.price * product.quantity, 0);
+  return formatPrice(price)
+})
+
 onMounted( async () => {
   await initialize()
   await checkStatus()
+  await getProducts()
 })
 </script>
 
@@ -43,7 +86,7 @@ onMounted( async () => {
   }
 
   form {
-    width: 30vw;
+    width: auto;
     min-width: 500px;
     align-self: center;
     box-shadow: 0px 0px 0px 0.5px rgba(50, 50, 93, 0.1),

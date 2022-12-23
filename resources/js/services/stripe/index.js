@@ -33,16 +33,16 @@ export default function useStripe() {
 
     switch (paymentIntent.status) {
       case "succeeded":
-        showMessage("Payment succeeded!");
+        showMessage("Paiement réussi !");
         break;
       case "processing":
-        showMessage("Your payment is processing.");
+        showMessage("Votre paiement est en cours de traitement.");
         break;
       case "requires_payment_method":
-        showMessage("Your payment was not successful, please try again.");
+        showMessage("Votre paiement n'a pas abouti, veuillez réessayer.");
         break;
       default:
-        showMessage("Something went wrong.");
+        showMessage("Quelque chose s'est mal passé.");
         break;
     }
   }
@@ -54,7 +54,7 @@ export default function useStripe() {
       elements: elements.value,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: process.env.MIX_APP_URL + "/checkout",
+        return_url: process.env.MIX_APP_URL,
       },
     });
   
@@ -66,7 +66,7 @@ export default function useStripe() {
     if (error.type === "card_error" || error.type === "validation_error") {
       showMessage(error.message);
     } else {
-      showMessage("An unexpected error occurred.");
+      showMessage("Une erreur inattendue est apparue.");
     }
   
     setLoading(false);

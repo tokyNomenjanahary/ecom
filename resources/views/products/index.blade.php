@@ -9,7 +9,7 @@
     <div class="card-body row flex-column">
       <h5 class="card-title">{{ $product->name }}</h5>
       <p class="card-text">
-        {{ $product->description }}
+        {{ str_limit($product->description, $limit = 80, $end = '...') }}
       </p>
       <div class="row align-items-center mt-auto mx-0 px-0">
         <strong class="text-muted col"> ${{ $product->price }}</strong>

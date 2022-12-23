@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class StripeCheckoutController extends Controller
 {
     public function create()
-    {
+    {     
         return view('payement.create');
     }
 
