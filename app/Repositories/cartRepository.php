@@ -54,6 +54,11 @@ class cartRepository
       ]);
   }
 
+  public function total()
+  {
+    return \Cart::session(Auth::user()->id)->getTotal();
+  }
+
   public function remove($id)
   {
     \Cart::session(Auth::user()->id)->remove($id);

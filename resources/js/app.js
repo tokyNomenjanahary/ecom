@@ -11,6 +11,7 @@ import Toaster from "@meforma/vue-toaster"
 import adminSidebar from "./components/admin/layouts/adminSidebar.vue"
 import adminNavBar from "./components/admin/layouts/adminNavBar.vue"
 import productForm from "./components/admin/product/productForm.vue"
+import paymentCreate from "./components/payment/paymentCreate.vue"
 
 const app = createApp({
   components: {
@@ -20,7 +21,8 @@ const app = createApp({
     shoppingCart,
     adminSidebar,
     adminNavBar,
-    productForm
+    productForm,
+    paymentCreate
   }
 })
 app.use(router)

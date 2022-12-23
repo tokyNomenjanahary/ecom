@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\ShoppingCartController;
+use App\Http\Controllers\StripeCheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,9 @@ Route::get('/shopping-cart', ShoppingCartController::class)->name('cart.index');
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/checkout', [StripeCheckoutController::class, 'create'])->name('payment.create');
+Route::post('/paymentIntent', [StripeCheckoutController::class, 'paymentIntent'])->name('payment.intent');
+// Route::post()
 
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
