@@ -31,12 +31,15 @@ Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/checkout', [StripeCheckoutController::class, 'create'])->name('payment.create');
 Route::post('/paymentIntent', [StripeCheckoutController::class, 'paymentIntent'])->name('payment.intent');
+Route::get('/payment-succeeded', [StripeCheckoutController::class, 'thanks'])->name('payment.succes');
+
 // Route::post()
 
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');
     Route::get('/create_products', [AdminController::class, 'create'])->name('products.create');
 });
+
 
 Route::view('{any}', 'admin.dashboard')
     ->middleware(['auth', 'isAdmin'])

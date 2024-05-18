@@ -43,4 +43,8 @@ class StripeCheckoutController extends Controller
             echo json_encode(['error' => $e->getMessage()]);
         }
     }
+
+    public function thanks() {
+        return view('payement.success');
+    }
 }

@@ -34,6 +34,7 @@ export default function useStripe() {
     switch (paymentIntent.status) {
       case "succeeded":
         showMessage("Payment succeeded!");
+        window.location = '/payment-succeeded'
         break;
       case "processing":
         showMessage("Your payment is processing.");
@@ -49,7 +50,6 @@ export default function useStripe() {
 
   const handleSubmit = async () => {
     setLoading(true);
-
     const { error } = await stripe.value.confirmPayment({
       elements: elements.value,
       confirmParams: {

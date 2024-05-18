@@ -27,6 +27,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('categories', CategoryController::class);
     Route::post('/product/categories', [CategoryController::class, 'getCategoryWithpropertyValue']);
     Route::post('/product/store', [ProductController::class, 'store'])->name('products.store');
+    Route::delete('/admin/products/{product}', [ProductController::class, 'destroy'])->name('admin.products.destroy');
     Route::post('/products/search', [ProductController::class, 'search'])->name('products.search');
     Route::post('/properties/store', [PropertyController::class, 'store'])->name('properties.store');
     Route::get('/properties', [PropertyController::class, 'index'])->name('properties.index');

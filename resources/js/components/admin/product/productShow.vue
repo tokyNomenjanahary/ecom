@@ -27,7 +27,7 @@
                     </div>
                   </div>
                   <div class="col-2 mb-2">
-                    <button type="button" class="btn rounded-pill btn-icon btn-outline-danger me-1">
+                    <button type="button" class="btn rounded-pill btn-icon btn-outline-danger me-1" @click="deleteProduct(product)">
                       <span class="tf-icons bx bx-trash"></span>
                     </button>
                     <button type="button" class="btn rounded-pill btn-icon btn-outline-primary me-1" @click="test">
@@ -54,13 +54,14 @@ import useProduct from '../../../services/admin/product/index.js';
         }
     })
 
-    const { getProduct, product } = useProduct();
+    const { getProduct, product, destroyProduct } = useProduct();
 
-    const test = () => { console.log(product) }
+    const deleteProduct = async (product) => {
+      await destroyProduct(product)
+    }
 
     onBeforeMount(async () => {
       await getProduct(props.id)
-      console.log(product)
     })
 </script>
 

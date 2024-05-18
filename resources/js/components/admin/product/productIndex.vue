@@ -101,7 +101,6 @@
   onMounted(async () => {
     await getProducts()
     await getCategories()
-    console.log(products)
   })
 
 </script>

@@ -25,8 +25,7 @@ export default function useCategory() {
 
   const destroyCategory = async (id) => {
     try {
-      console.log(category.value)
-      await axios.delete('/api/categories/' + id, category.value )
+      await axios.delete('/api/categories/' + id)
       await getCategories()
     } catch (error) {
       console.log(error)

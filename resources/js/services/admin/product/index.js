@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ref } from "vue";
+import router from '../../../router/index.js';
 
 export default function useProduct () {
   const products = ref([])
@@ -49,6 +50,15 @@ export default function useProduct () {
     }
   }
 
+  const destroyProduct = async (data) => {
+    try {
+      await axios.delete(`/api/admin/products/${data.id}`)
+      router.push({ name: 'admin.products' })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return {
     getProducts,
     products,
@@ -56,6 +66,7 @@ export default function useProduct () {
     storeProduct,
     storeProductImage,
     getProduct,
-    getSearchResults
+    getSearchResults,
+    destroyProduct
   }
 }
