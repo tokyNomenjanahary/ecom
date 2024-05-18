@@ -42,7 +42,9 @@
           </a>
 
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-            <a href="/admin/home" class="dropdown-item">Accéder à l'espace administrateur.</a>
+            @if (Auth::user()->role->id == 1)
+              <a href="/admin/home" class="dropdown-item">Accéder à l'espace administrateur.</a>
+            @endif
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
               Déconnexion
