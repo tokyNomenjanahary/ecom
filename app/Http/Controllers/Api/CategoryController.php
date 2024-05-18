@@ -72,9 +72,9 @@ class CategoryController extends Controller
         return response()->noContent();
     }
 
-    public function getCategoryWithpropertyValue(Request $request)
+    public function getCategoryWithpropertyValue($id)
     {
-        $category = Category::find($request->category_id);
+        $category = Category::find($id);
         return response()->json($category->properties);
     }
 }

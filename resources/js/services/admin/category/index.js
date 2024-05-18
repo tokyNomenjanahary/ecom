@@ -34,7 +34,7 @@ export default function useCategory() {
 
   const getCategory = async (id) => {
     try {
-      let response = await axios.post(`/api/product/categories`, id)
+      let response = await axios.get('/api/category/properties/' + id)
       properties.value = response.data
     } catch (error) {
       console.log(error)

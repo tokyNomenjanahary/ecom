@@ -34,7 +34,7 @@
                   id="category"
                   class="form-select"
                   v-model="form.category_id"
-                  @change="showCategoryPropertiesValue(this.value)"
+                  @change="showCategoryPropertiesValue($event.target.value)"
                 >
                   <option
                     v-for="category in categories"
@@ -238,8 +238,9 @@
     removeImage()
   }
 
-  const showCategoryPropertiesValue = async () => {
-    await getCategory({...form})
+  const showCategoryPropertiesValue = async (id) => {
+    console.log(id)
+    await getCategory(id)
   }
 
 
