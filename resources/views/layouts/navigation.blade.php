@@ -14,9 +14,6 @@
         <li class="nav-item">
           <a class="nav-link active pb-0" aria-current="page" href="{{ route('home.index') }}">Nos produits</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link pb-0" href="/home">Link</a>
-        </li>
       </ul>
 
       <!-- Right Side Of Navbar -->
@@ -45,6 +42,7 @@
           </a>
 
           <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a href="/admin/home" class="dropdown-item">Accéder à l'espace administrateur.</a>
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
               Déconnexion

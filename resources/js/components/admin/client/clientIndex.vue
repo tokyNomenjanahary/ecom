@@ -37,13 +37,14 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, inject } from "vue";
 import useUser from "../../../services/admin/client/index.js";
 
 const { users, usersCount, getUsers, destroyUser } = useUser();
-
+const toast = inject('toast');
 const deleteUser = async (id) => {
   await destroyUser(id);
+  toast.success("L'utilisateur a été supprimé avec succès.")
 };
 
 onMounted(async () => {

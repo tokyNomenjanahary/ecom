@@ -195,11 +195,12 @@
 </template>
 
 <script setup>
+  import { inject } from "vue";
   import { reactive, ref } from "@vue/reactivity"
   import { onMounted } from "@vue/runtime-core"
   import useProperty from "../../../services/admin/property/index.js"
   const { properties, property, storeProperty, getProperties, destroyProperty, getProperty, updateProperty } = useProperty()
-
+  const toast = inject('toast');
   const form = reactive({
     name: '',
     tempValues: '',
@@ -230,6 +231,7 @@
   const saveProperty = async () => {
     await storeProperty({...form})
     await getProperties()
+    toast.success("La propriété a été ajoutée avec succès.")
   }
 
   const showEditPropertyModal = async (id) => {
@@ -250,6 +252,7 @@
   const deleteProperty = async (property) => {
     await destroyProperty(property)
     await getProperties()
+    toast.success('La propriété a été supprimée avec succès.')
   }
 
   onMounted( async () => {

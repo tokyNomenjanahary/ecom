@@ -44,9 +44,10 @@
 </template>
 
 <script setup>
+import { inject } from "vue";
 import { onBeforeMount, onMounted } from '@vue/runtime-core';
 import useProduct from '../../../services/admin/product/index.js';
-
+    const toast = inject('toast');
     const props = defineProps({
         id: {
           required: true,
@@ -58,6 +59,7 @@ import useProduct from '../../../services/admin/product/index.js';
 
     const deleteProduct = async (product) => {
       await destroyProduct(product)
+      toast.success('Le produit a été supprimé avec succès.')
     }
 
     onBeforeMount(async () => {

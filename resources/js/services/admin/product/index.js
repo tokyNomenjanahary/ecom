@@ -19,6 +19,7 @@ export default function useProduct () {
   const storeProduct = async (product) => {
     try {
       await axios.post('/api/product/store', product)
+      router.push({ name: 'admin.products' })
     } catch (error) {
       console.log(error)
     }

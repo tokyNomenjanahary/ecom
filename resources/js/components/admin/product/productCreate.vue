@@ -183,7 +183,7 @@
 </template>
 
 <script setup>
-
+  import { inject } from "vue";
   import { onMounted, reactive, ref, watch } from "@vue/runtime-core";
   import useCategory from "../../../services/admin/category/index.js";
   import useProduct from "../../../services/admin/product/index.js";
@@ -200,6 +200,7 @@
     description: '',
     price: null
   })
+  const toast = inject('toast');
 
   const saveProduct = async () => {
     let property_value_ids = []
@@ -225,8 +226,6 @@
     form.property_value_ids.forEach((item) => {
       imgData.append('property_value_ids[]', item)
     })
-    console.log(imgData.property_value_ids)
-    console.log(imgData.property_ids)
     await storeProduct(imgData)
     form.category_id = null
     form.description = ''
@@ -236,6 +235,7 @@
     form.property_value_ids = []
     properties.value = []
     removeImage()
+    toast.success('Le produit a été ajouté avec succès.')
   }
 
   const showCategoryPropertiesValue = async (id) => {

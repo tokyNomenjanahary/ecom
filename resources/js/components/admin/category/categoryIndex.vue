@@ -89,10 +89,12 @@
 </template>
 
 <script setup>
+import { inject } from "vue";
 import { onMounted, reactive, ref } from "@vue/runtime-core";
 import useCategory from "../../../services/admin/category/index.js";
 import useProperty from "../../../services/admin/property/index.js"
 
+const toast = inject('toast')
 const { properties, getProperties } = useProperty()
 
 const { getCategories, categories, category, addCategory, destroyCategory } =
@@ -108,9 +110,11 @@ const saveCategory = async () => {
   form.name = ''
   form.checkedProperty = []
   showPropertyList.value = false
+  toast.success('La catégorie a été ajoutée avec succès.')
 };
 const deleteCategory = async (id) => {
   await destroyCategory(id);
+  toast.success('La catégorie a été supprimée avec succès.')
 };
 const toggle = () => {
   showPropertyList.value = !showPropertyList.value

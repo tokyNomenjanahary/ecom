@@ -1,7 +1,7 @@
 <template>
   <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
     <div class="app-brand demo">
-      <router-link to="/dashboard" class="app-brand-link">
+      <router-link :to="{ name: 'admin.home' }" class="app-brand-link">
         <span class="app-brand-logo demo">
           <svg
             width="25"
@@ -75,7 +75,7 @@
             </g>
           </svg>
         </span>
-        <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
+        <span class="app-brand-text demo menu-text fw-bolder ms-2">Admin</span>
       </router-link>
 
       <a
